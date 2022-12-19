@@ -42,3 +42,36 @@ class BlogPost(models.Model):
     class Meta:
         verbose_name = _('Blog Post')
         verbose_name_plural = _('Blog Posts')
+
+
+class Interests(models.Model):
+    title = models.CharField(max_length=140)
+
+    def __str__(self):
+        return self.title
+
+
+class City(models.Model):
+    title = models.CharField(max_length=140)
+
+    def __str__(self):
+        return self.title
+
+
+class Person(models.Model):
+    name = models.CharField(max_length=150)
+    mobile = models.CharField(max_length=100)
+    interests = models.ManyToManyField(Interests)
+
+    def __str__(self):
+        return self.name
+
+
+class PersonAddress(models.Model):
+    person = models.OneToOneField(Person, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    street_address = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.person.name + "(" + self.street_address + ")"
+
