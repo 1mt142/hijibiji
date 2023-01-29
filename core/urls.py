@@ -24,4 +24,6 @@ urlpatterns = [
     path('api/v1/person-details/', views.PersonDetails.as_view()),
     # full blog app
     path('blog/api/v1/', include("blogapp.urls")),
+    # share app | urls included
+    path('shareapp/', include("shareapp.urls")),
 ]

@@ -18,6 +18,7 @@ class CreateBlog(APIView):
         print("Request kwargs:", kwargs)
         return Response({'message': 'OK'}, status=status.HTTP_200_OK)
 
+    ''' 
     def get(self, request, *args, **kwargs):
         print("Request Body:", request.query_params)
         print("All Func of request :", dir(request))
@@ -37,3 +38,9 @@ class CreateBlog(APIView):
         # print("serializer", serializer)
         return Response({"data": ""}, status=status.HTTP_200_OK)
         #return HttpResponse(BlogPost.objects.only('title'), content_type="application/json")
+    '''
+
+    def get(self, request, *args, **kwargs):
+        allpost = BlogPost.objects.values_list('title', 'post_body')
+        print(list(allpost))
+        return Response({"key": ''}, status=status.HTTP_200_OK)
